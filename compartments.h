@@ -11,6 +11,12 @@ class ImageLocations {
         // List of Images
         std::vector<std::string> images;
 
+        // Active Image
+        std::string activeImage;
+
+        // Get Next Image
+        void getNextImage();
+
         // Add an Image to the List
         void addItem(std::string image);
 
@@ -28,5 +34,14 @@ class ImageLocations {
 
         // Create a function that will move files from one location to another.
         void moveFiles(std::string oldLocation, std::string newLocation);
+};
 
+// Class that stores the ImageLocations class
+class ImageLocationsStore {
+    public:
+        // ImageLocations Object for Reference.
+        ImageLocations imageLocations;
+
+        // Active Image Function, which is done by calling the getNextImage function from imageLocations
+        std::string current_image = imageLocations.activeImage;
 };

@@ -15,3 +15,27 @@ void ImageLocations::moveFiles(std::string oldLocation, std::string newLocation)
     // Move the file from the old location to the new location.
     std::filesystem::rename(oldLocation, newLocation);
 }
+
+// Return the first image in the list of images.
+void ImageLocations::getNextImage() {
+    // If the list of images is not empty, set the active image to the first image in the list.
+    if (!images.empty()) {
+        activeImage = images[0];
+    } else {
+        // If the list of images is empty, set the active image to an empty string.
+        activeImage = "";
+    }
+}
+
+// Add an image to the end of the list of images.
+void ImageLocations::addItem(std::string image) {
+    images.push_back(image);
+}
+
+// Remove the first image in the list of images.
+void ImageLocations::removeItem(std::string image) {
+    // If the list of images is not empty, remove the first image in the list.
+    if (!images.empty()) {
+        images.erase(images.begin());
+    }
+}
