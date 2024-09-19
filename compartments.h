@@ -4,6 +4,7 @@
 #include <filesystem>
 #include <vector>
 #include <string>
+#include <json/json.h>
 
 // Class for Images and their Locations. Will also work in retrieving images.
 class ImageLocations {
