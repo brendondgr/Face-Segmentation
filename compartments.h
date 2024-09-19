@@ -56,4 +56,6 @@ class ImageLocationsStore {
         std::string imageLocation_tr_cl_seg = "Training/train/seg/";
         std::string imageLocation_val_cl_im = "Training/val/image/";
         std::string imageLocation_val_cl_seg = "Training/val/seg/";
+
+        // Gather the
 };
