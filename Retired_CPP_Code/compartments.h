@@ -1,10 +1,11 @@
 #include <QPushButton>
 #include <QCoreApplication>
 #include <iostream>
+#include <fstream>
 #include <filesystem>
 #include <vector>
 #include <string>
-#include <json/json.h>
+#include <nlohmann/json.hpp>
 
 // Class for Images and their Locations. Will also work in retrieving images.
 class ImageLocations {
@@ -41,7 +42,7 @@ class ImageLocations {
 };
 
 // Class that stores the ImageLocations class
-class ImageLocationsStore {
+class PrimaryStorage {
     public:
         // Initialize the ImageLocations
         ImageLocations imageLocations_tr_un_im;
@@ -50,7 +51,7 @@ class ImageLocationsStore {
         ImageLocations imageLocations_val_un_seg;
 
         // Constructor
-        ImageLocationsStore();
+        PrimaryStorage();
 
         // Move-To Locations...
         std::string imageLocation_tr_cl_im = "Training/train/image/";
@@ -58,5 +59,9 @@ class ImageLocationsStore {
         std::string imageLocation_val_cl_im = "Training/val/image/";
         std::string imageLocation_val_cl_seg = "Training/val/seg/";
 
-        // Gather the
+        // Read in the JSON File that contains emotions.
+        void readJSONFile(std::string filename);
+
+        // Add Name to JSONFile
+        void addNameToJSONFile(std::string filename, std::string name);
 };

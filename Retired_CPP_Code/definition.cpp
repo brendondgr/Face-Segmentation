@@ -41,9 +41,51 @@ void ImageLocations::removeItem(std::string image) {
 }
 
 // Default Constructor for the ImageLocationStore
-ImageLocationsStore::ImageLocationsStore() : 
+PrimaryStorage::PrimaryStorage() : 
     imageLocations_tr_un_im("../Training/train_unclass/image/"),
     imageLocations_tr_un_seg("../Training/train_unclass/seg/"),
     imageLocations_val_un_im("../Training/val_unclass/image/"),
     imageLocations_val_un_seg("../Training/val_unclass/seg/") {
+}
+
+// Read in the JSON File that contains emotions.
+void PrimaryStorage::readJSONFile(std::string filename) {
+    // Load the JSON File that is located at filename
+    nlohmann::json data = nlohmann::json::parse(std::ifstream (filename));
+
+    // Print out the JSON File line by line in format "key: value"
+    for (auto& element : data.items()) {
+        std::cout << element.key() << ": " << element.value() << std::endl;
+    }
+}
+
+// Add a name to the JSON File
+void PrimaryStorage::addNameToJSONFile(std::string filename, std::string name) {
+    // Load the JSON File that is located at filename
+    nlohmann::json data = nlohmann::json::parse(std::ifstream (filename));
+
+    // Get the last entry's key in the JSON File
+    std::string lastKey = data.rbegin().key();
+
+    // lastKey is a number, convert to int, add one, convert back to string.
+    int newKey = std::stoi(lastKey) + 1; // This is the new key.
+
+    // Add the key and the name to the JSON File
+    data[std::to_string(newKey)] = name;
+
+    // Print data
+    std::cout << "Printing Data" << std::endl;
+    std::cout << data.dump(4) << std::endl;
+
+    // Open the JSON File for writing
+    std::ofstream file(filename);
+
+    // Write the JSON File to the file
+    file << data.dump(4);
+
+    // Save the File to the disk location specified by filename
+    file.close();
+
+    // Print message to console
+    // std::cout << "Added " << newKey << ". " << name << " to " << filename << std::endl;
 }
