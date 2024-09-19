@@ -42,15 +42,18 @@ class ImageLocations {
 // Class that stores the ImageLocations class
 class ImageLocationsStore {
     public:
-        // Constructor
-        ImageLocationsStore() {
-            // ImageLocations Object for Reference.
-            ImageLocations imageLocations_tr_un_im = ImageLocations("Training/train_unclass/image/");
-            ImageLocations imageLocations_tr_un_seg = ImageLocations("Training/train_unclass/seg/");
-            ImageLocations imageLocations_val_un_im = ImageLocations("Validation/val_unclass/image/");
-            ImageLocations imageLocations_val_un_seg = ImageLocations("Validation/val_unclass/seg/");
-        }
+        // Initialize the ImageLocations
+        ImageLocations imageLocations_tr_un_im;
+        ImageLocations imageLocations_tr_un_seg;
+        ImageLocations imageLocations_val_un_im;
+        ImageLocations imageLocations_val_un_seg;
 
-        // Active Image Function, which is done by calling the getNextImage function from imageLocations
-        
+        // Constructor
+        ImageLocationsStore();
+
+        // Move-To Locations...
+        std::string imageLocation_tr_cl_im = "Training/train/image/";
+        std::string imageLocation_tr_cl_seg = "Training/train/seg/";
+        std::string imageLocation_val_cl_im = "Training/val/image/";
+        std::string imageLocation_val_cl_seg = "Training/val/seg/";
 };

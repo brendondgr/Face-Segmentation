@@ -39,3 +39,11 @@ void ImageLocations::removeItem(std::string image) {
         images.erase(images.begin());
     }
 }
+
+// Default Constructor for the ImageLocationStore
+ImageLocationsStore::ImageLocationsStore() : 
+    imageLocations_tr_un_im("../Training/train_unclass/image/"),
+    imageLocations_tr_un_seg("../Training/train_unclass/seg/"),
+    imageLocations_val_un_im("../Training/val_unclass/image/"),
+    imageLocations_val_un_seg("../Training/val_unclass/seg/") {
+}
